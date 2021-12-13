@@ -1,7 +1,9 @@
-const btn = document.querySelector("button.mobile-menu-button");
-const menu = document.querySelector(".mobile-menu");
+const currentLocation = location.href;
+const menuItem = document.querySelectorAll('a');
+const menuLength = menuItem.length;
+for(let i =0; i < menuLength; i++){
+  if(menuItem[i].href === currentLocation){
+    menuItem[i].className = "isactive"
+  }
+}
 
-// add event listeners
-btn.addEventListener("click", () => {
-  menu.classList.toggle("hidden");
-});
