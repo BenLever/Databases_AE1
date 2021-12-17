@@ -12,10 +12,9 @@ const transactionSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    date: {
+    createdAt: {
         type: Date,
-        default: Date.now,
-        required: true
+        default: Date.now
     }
 })
 
