@@ -7,7 +7,6 @@
     <title>Expense Tracker</title>
     
     <link rel="stylesheet" href="/css/transactions.css">
-
 </head>
 <%- include('../particles/header.ejs') %>
 <body>
@@ -31,9 +30,9 @@
                             <td><%= transaction.description %></td>
                             <td><%= transaction.createdAt.toLocaleDateString() %></td>
                             <td>
-                                <a href="/transactions/<%= transaction.id %>/edit">Edit</a>
+                                <a class="editbtn" href="/transactions/edit/<%= transaction.id %>">Edit</a>
                                 <form method="POST" action="/transactions/<%= transaction.id %>?_method=DELETE">
-                                    <button type="submit">Delete</button>
+                                    <button class="deletebtn" type="submit">Delete</button>
                                 </form>
                             </td>
                         </tr>

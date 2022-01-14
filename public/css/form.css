@@ -1,0 +1,73 @@
+:root{
+    --primary: #8c38ff;
+    --light: #EEEEEE;
+    --dark: #161616;
+}
+
+.contact-box{
+    width: 500px;
+    background-color: var(--dark);
+    border: 3px solid var(--primary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.boxbox {
+    margin: 35px;
+  }
+
+.input-field {
+    width: 400px;
+    height: 40px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid var(--primary);
+    border-radius: 14px;
+    outline: none;
+}
+
+.text-field {
+    padding-top: 10px;
+}
+
+.save-btn {
+    border-radius: 20px;
+    color: var(--light);
+    margin-top: 18px;
+    background-color: #47c35a;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 0;
+    text-align: center;
+}
+
+
+.cancel-btn {
+    border-radius: 20px;
+    color: var(--light);
+    margin-top: 18px;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 0;
+    text-align: center;
+}
+
+.top{
+    margin-top: 20px;
+    font-weight: bold;
+    color: var(--light);
+    text-align: center;
+    font-size: 35px;
+}

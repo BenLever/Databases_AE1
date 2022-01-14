@@ -35,31 +35,33 @@
     border-bottom: 2px solid var(--primary);
 }
 
-.content-table a{
+
+.editbtn {
+    border-radius: 20px;
+    color: var(--light);
+    margin-top: 18px;
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+
     padding: 5px 10px;
     font-size: 15px;
-    cursor: pointer;
-    border-radius: 5px;
     border: 0;
-    color: white;
-    background: orange;
     text-align: center;
-    text-decoration: none;
-    margin-bottom: 30px;
 }
 
-.content-table button{
+.deletebtn {
+    border-radius: 20px;
+    color: var(--light);
+    margin-top: 18px;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+
     padding: 5px 10px;
     font-size: 15px;
-    cursor: pointer;
-    border-radius: 5px;
     border: 0;
-    color: white;
-    background: red;
     text-align: center;
-    text-decoration: none;
-}
-
-.content-table a:hover{
-    color: var(--primary);
 }
