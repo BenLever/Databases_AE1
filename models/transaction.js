@@ -15,7 +15,12 @@ const transactionSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
-})
+    },
+});
+
+transactionSchema.index({ type: 'text', description: 'text'});
+
+
+
 
 module.exports = mongoose.model('Transaction', transactionSchema)

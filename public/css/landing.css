@@ -1,0 +1,9 @@
+:root{
+    --primary: #8c38ff;
+    --light: #EEEEEE;
+    --dark: #161616;
+}
+
+h4{
+    color: var(--primary);
+}

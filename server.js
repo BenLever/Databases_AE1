@@ -35,7 +35,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use('/transactions', transactionsRouter)
 
-app.use(expressSession({ secret: 'foo barr', cookie: { expires: new Date(253402300000000) } }))
+app.use(expressSession({ secret: 'ExpenseTrackerSecretSession', cookie: { expires: new Date(253402300000000) } }))
 
 
 app.use("*", async (req, res, next) => {
@@ -55,16 +55,32 @@ const authMiddleware = async (req, res, next) => {
   next()
 }
 
-
-
-
-app.get('/all', async (req,res) => {
+//Transaction pages
+app.get('/all', authMiddleware, async (req,res) => {
   const transactions =  await Transaction.find().sort({
     createdAt: 'desc'
   })
   res.render('transactions/index', { transactions: transactions})
 })
 
+app.get('/transactions/new', authMiddleware, (req, res) => {
+  res.render('transactions/new_transaction', { transaction: new Transaction() })
+})
+
+app.get('/transactions/edit/:id', authMiddleware, async (req, res) => {
+  try {
+      const transaction = await Transaction.findById(req.params.id)
+      res.render('transactions/edit', {transaction: transaction})
+  } catch {
+      res.redirect('/all')
+  }
+})
+
+app.get('/transactions/search', (req, res) => {
+  res.render('transactions/search')
+})
+
+//Home Page
 app.get('/', (req, res) => {
   res.render('landing')
 })
@@ -85,7 +101,7 @@ app.post("/login", userController.login);
 app.get("/logout", async (req, res) => {
   req.session.destroy();
   global.user = false;
-  res.redirect('/login');
+  res.redirect('/');
 })
 
 

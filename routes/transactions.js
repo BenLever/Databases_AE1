@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const Transaction = require('./../models/transaction')
 const router = express.Router()
 
@@ -9,26 +10,12 @@ router.post('/', async (req, res) => {
         type: req.body.type,
         description: req.body.description,
     })
+
     try{
         transaction = await transaction.save() 
         res.redirect('/all')
     } catch (e) {
         res.render('transactions/new_transaction', { transaction: transaction })
-    }
-})
-
-router.get('/new', (req, res) => {
-    res.render('transactions/new_transaction', { transaction: new Transaction() })
-})
-
-
-
-router.get('/edit/:id', async (req, res) => {
-    try {
-        const transaction = await Transaction.findById(req.params.id)
-        res.render('transactions/edit', {transaction: transaction})
-    } catch {
-        res.redirect('/all')
     }
 })
 
@@ -49,6 +36,16 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     await Transaction.findByIdAndDelete(req.params.id)
     res.redirect('/all')
+})
+
+router.post('/', async (req, res) => {
+    try {
+        let searchTerm = req.body.searchTerm;
+        let transaction = await Transaction.find( { $text: { searchTerm, $diacriticSensitive: true } });
+        res.render('transactions/search', {transaction})
+    } catch (error) {
+        res.redirect("/all")
+    }
 })
 
 
