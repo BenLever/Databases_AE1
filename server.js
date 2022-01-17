@@ -1,10 +1,8 @@
-if (process.env.NODE_ENV !== 'production') {
-  require("dotenv").config();
-}
+require("dotenv").config();
+
 
 const express = require('express');
 const mongoose = require('mongoose')
-const dotenv = require('dotenv');
 const session = require("express-session");
 const Transaction = require('./models/transaction')
 const User = require('./models/user')
