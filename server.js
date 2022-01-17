@@ -12,7 +12,7 @@ const path = require('path');
 const methodOverride = require('method-override')
 const app = express();
 
-const { WEB_PORT, MONGODB_URI } = process.env;
+const { PORT, MONGODB_URI } = process.env;
 
 //DB Connection
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
@@ -109,6 +109,6 @@ app.get("/logout", async (req, res) => {
 })
 
 
-app.listen(WEB_PORT, () => {
-    console.log(`Example app listening at http://localhost:${WEB_PORT}`);
+app.listen(PORT, () => {
+    console.log(`Example app listening at http://localhost:${PORT}`);
   });
