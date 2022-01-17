@@ -38,15 +38,6 @@ router.delete('/:id', async (req, res) => {
     res.redirect('/all')
 })
 
-router.post('/', async (req, res) => {
-    try {
-        let searchTerm = req.body.searchTerm;
-        let transaction = await Transaction.find( { $text: { searchTerm, $diacriticSensitive: true } });
-        res.render('transactions/search', {transaction})
-    } catch (error) {
-        res.redirect("/all")
-    }
-})
 
 
 

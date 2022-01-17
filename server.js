@@ -3,16 +3,18 @@ require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose')
 const dotenv = require('dotenv');
-const expressSession = require("express-session");
+const session = require("express-session");
 const Transaction = require('./models/transaction')
 const User = require('./models/user')
 const bodyparser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const methodOverride = require('method-override')
 const app = express();
 
 const { WEB_PORT, MONGODB_URI } = process.env;
 
+//DB Connection
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 mongoose.connection.on("error", (err) => {
   console.error(err);
@@ -22,6 +24,7 @@ mongoose.connection.on("error", (err) => {
   process.exit();
 });
 
+//Controllers
 const transactionsRouter = require('./routes/transactions')
 const userController = require("./routes/user");
 
@@ -35,7 +38,12 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 app.use('/transactions', transactionsRouter)
 
-app.use(expressSession({ secret: 'ExpenseTrackerSecretSession', cookie: { expires: new Date(253402300000000) } }))
+app.use(cookieParser('ExpenseTrackerSecure'));
+app.use(session({
+  secret: 'ExpenseTrackerSecretSession',
+  saveUninitialized: true,
+  resave: true
+}));
 
 
 app.use("*", async (req, res, next) => {
@@ -74,10 +82,6 @@ app.get('/transactions/edit/:id', authMiddleware, async (req, res) => {
   } catch {
       res.redirect('/all')
   }
-})
-
-app.get('/transactions/search', (req, res) => {
-  res.render('transactions/search')
 })
 
 //Home Page

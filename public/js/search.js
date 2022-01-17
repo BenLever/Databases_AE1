@@ -1,4 +1,4 @@
-const transactionView = (wine) => `
+const transactionView = (transaction) => `
 <div>
 <table class="content-table">
     <thead>
@@ -34,14 +34,14 @@ const transactionView = (wine) => `
 const handleSubmit = async () => {
     const searchVal = document.querySelector("#searchInput").value;
     try {
-        const wineDomRef = document.querySelector('#wineItems');
-        const ref = await fetch(`/api/search-tastings/?search=${searchVal}`);
+        const transDomRef = document.querySelector('#transItems');
+        const ref = await fetch(`/api/search-transaction/?search=${searchVal}`);
         const searchResults = await ref.json();
-        let wineHtml = [];
-        searchResults.forEach(wine => {
-           wineHtml.push(wineView(wine));
+        let transHtml = [];
+        searchResults.forEach(transaction => {
+           transHtml.push(transView(transaction));
         });
-        wineDomRef.innerHTML = wineHtml.join(""); 
+        transDomRef.innerHTML = transHtml.join(""); 
     } catch (e) {
         console.log(e);
         console.log('could not search api');

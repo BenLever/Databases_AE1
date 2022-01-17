@@ -18,7 +18,7 @@ const transactionSchema = new mongoose.Schema({
     },
 });
 
-transactionSchema.index({ type: 'text', description: 'text'});
+transactionSchema.index({type: 'text', description: 'text' });
 
 
 
